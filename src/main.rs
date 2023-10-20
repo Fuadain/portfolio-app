@@ -28,7 +28,7 @@ async fn not_found() -> io::Result<NamedFile> {
 #[launch]
 fn rocket() -> _ {
     rocket::build()
-        .attach(cors::CORS)
+        .attach(cors::CORS::init(&vec!["https://fuadain.onrender.com", "http://localhost:3000", "http://localhost:8000"]))
         .attach(ProjectDB::init())
         .register("/", catchers![not_found])
         .mount("/", routes![index, files])
